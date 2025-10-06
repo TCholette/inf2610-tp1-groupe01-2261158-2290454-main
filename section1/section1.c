@@ -12,7 +12,7 @@ int main(int argc, char *argv[]) {
 }
 
 void compterMots() {
-    FILE *fp = fopen("utils/mots.txt", "r");
+    FILE *fp = fopen("../utils/mots.txt", "r");
     if (fp == NULL) {
 
         printf("Error: No file found in directory");
@@ -22,6 +22,9 @@ void compterMots() {
         char ch = fgetc(fp);
         while(ch != EOF) {
             ch = fgetc(fp);
+            if (ch == EOF) {
+                break;
+            }
             if (isspace(ch)) {
                 debounce = 1;
             } else {
@@ -31,7 +34,7 @@ void compterMots() {
                 debounce = 0;
             }
         }
-        FILE *fp2 = fopen("section1/section2_2.txt", "w");
+        FILE *fp2 = fopen("section2_2.txt", "w");
         char buffer[16] = {0};
         sprintf(buffer, "%i", sum);
         fputs(buffer, fp2);
